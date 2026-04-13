@@ -2,15 +2,16 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class BaseSoundPlayer : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class SoundButton : MonoBehaviour
 {
-    [SerializeField] protected AudioSource _audioSource;
-        
     private Button _button;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _button = GetComponent<Button>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
