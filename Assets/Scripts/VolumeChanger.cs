@@ -11,6 +11,7 @@ public class VolumeChanger : MonoBehaviour
     
     [SerializeField] private AudioMixerGroup _mixerGroup;
     [SerializeField] private MixerGroups _groupType;
+    [SerializeField] private AudioSource _audioSource = null;
     
     private Slider _slider;
     
@@ -32,8 +33,11 @@ public class VolumeChanger : MonoBehaviour
 
     private void ChangeVolume(float value)
     {
-        string parameterName = MixerGroupNames.GetName(_groupType);
+        string groupName = MixerGroupNames.GetName(_groupType);
+
+        if (_audioSource != null)
+            _audioSource.volume = value;
         
-        _mixerGroup.audioMixer.SetFloat(parameterName, Mathf.Log10(Mathf.Clamp(value, MinValue, MaxValue)) * 20);
+        _mixerGroup.audioMixer.SetFloat(groupName, Mathf.Log10(Mathf.Clamp(value, MinValue, MaxValue)) * 20);
     }
 }

@@ -361,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mixerGroup: {fileID: -346351410141719694, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
   _groupType: 2
+  _audioSource: {fileID: 1521922863}
 --- !u!1 &66005291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,6 +2184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mixerGroup: {fileID: 24300002, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
   _groupType: 0
+  _audioSource: {fileID: 0}
 --- !u!1 &974437922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mixerGroup: {fileID: -5823511888890856403, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
   _groupType: 1
+  _audioSource: {fileID: 0}
 --- !u!1 &1058215512
 GameObject:
   m_ObjectHideFlags: 0
