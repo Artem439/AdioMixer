@@ -1,5 +1,4 @@
-﻿using Sound;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
@@ -8,6 +7,8 @@ public class VolumeChanger : MonoBehaviour
 {
     private const float MinValue = 0.0001f;
     private const float MaxValue = 1f;
+
+    private const float DecibelMultiplier = 20;
     
     [SerializeField] private AudioMixerGroup _mixerGroup;
     [SerializeField] private MixerGroups _groupType;
@@ -42,6 +43,6 @@ public class VolumeChanger : MonoBehaviour
         if (_groupType == MixerGroups.Master && (_toggle == null || _toggle.isOn == false))
             return;
         
-        _mixerGroup.audioMixer.SetFloat(groupName, Mathf.Log10(Mathf.Clamp(value, MinValue, MaxValue)) * 20);
+        _mixerGroup.audioMixer.SetFloat(groupName, Mathf.Log10(Mathf.Clamp(value, MinValue, MaxValue)) * DecibelMultiplier);
     }
 }
