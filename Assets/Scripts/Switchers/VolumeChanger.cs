@@ -16,6 +16,10 @@ namespace Switchers
         private void Awake()
         {
             _slider = GetComponent<Slider>();
+        }
+
+        private void Start()
+        {
             ChangeVolume(_slider.value);
         }
     
