@@ -6,8 +6,5 @@
          public const float MaxSliderValue = 1f;
 
          public const float DecibelMultiplier = 20;
-        
-         public const float NormalVolume = 0.0f;
-         public const float MinVolume = -80.0f;
     }
 }

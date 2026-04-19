@@ -8,6 +8,8 @@ namespace Switchers
     [RequireComponent(typeof(Toggle))]
     public class ToggleVolume : MonoBehaviour
     {
+        private const float MinVolume = -80.0f;
+        
         private const string LabelTextOn = "On"; 
         private const string LabelTextOff = "Off";
         
@@ -21,7 +23,6 @@ namespace Switchers
         {
             _toggle = GetComponent<Toggle>();
             ApplyVolume(_toggle.isOn);
-            UpdateLabel(_toggle.isOn);
         }
         
         private void OnEnable()
@@ -36,7 +37,7 @@ namespace Switchers
         
         private void ApplyVolume(bool isOn)
         {
-            _masterMixer.audioMixer.SetFloat(MixerGroups.MasterVolume.ToString(), isOn ? (Mathf.Log10(Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) * VolumeValues.DecibelMultiplier) : VolumeValues.MinVolume);
+            _masterMixer.audioMixer.SetFloat(MixerGroups.MasterVolume.ToString(), isOn ? (Mathf.Log10(Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) * VolumeValues.DecibelMultiplier) : MinVolume);
             
             UpdateLabel(isOn);
         }

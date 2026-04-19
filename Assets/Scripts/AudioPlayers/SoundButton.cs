@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace AudioPlayers
 {
     [RequireComponent(typeof(Button))]
-    [RequireComponent(typeof(AudioSource))]
     public class SoundButton : MonoBehaviour
     {
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _audioClip;
+        
         private Button _button;
-        private AudioSource _audioSource;
 
         private void Awake()
         {
             _button = GetComponent<Button>();
-            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -28,7 +29,7 @@ namespace AudioPlayers
 
         private void PlaySound()
         {
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_audioClip);
         }
     }
 }
