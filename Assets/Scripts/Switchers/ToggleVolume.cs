@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
@@ -7,16 +8,12 @@ namespace Switchers
     [RequireComponent(typeof(Toggle))]
     public class ToggleVolume : MonoBehaviour
     {
-        private const string GroupName = "MasterVolume";
-
-        private const string LabelTextOn = "On";
+        private const string LabelTextOn = "On"; 
         private const string LabelTextOff = "Off";
-        
-        private const float NormalVolume = 0.0f;
-        private const float MinVolume = -80.0f;
         
         [SerializeField] private AudioMixerGroup _masterMixer;
         [SerializeField] private Text _label;
+        [SerializeField] private Slider _volumeSlider;
         
         private Toggle _toggle;
 
@@ -30,18 +27,18 @@ namespace Switchers
         private void OnEnable()
         {
             _toggle.onValueChanged.AddListener(ApplyVolume);
-            _toggle.onValueChanged.AddListener(UpdateLabel);
         }
 
         private void OnDisable()
         {
             _toggle.onValueChanged.RemoveListener(ApplyVolume);
-            _toggle.onValueChanged.RemoveListener(UpdateLabel);
         }
         
         private void ApplyVolume(bool isOn)
         {
-            _masterMixer.audioMixer.SetFloat(GroupName, isOn ? NormalVolume : MinVolume);
+            _masterMixer.audioMixer.SetFloat(MixerGroups.MasterVolume.ToString(), isOn ? (Mathf.Log10(Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) * VolumeValues.DecibelMultiplier) : VolumeValues.MinVolume);
+            
+            UpdateLabel(isOn);
         }
         
         private void UpdateLabel(bool isOn)

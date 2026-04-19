@@ -8,15 +8,8 @@ namespace Switchers
     [RequireComponent(typeof(Slider))]
     public class VolumeChanger : MonoBehaviour
     {
-        private const float MinValue = 0.0001f;
-        private const float MaxValue = 1f;
-
-        private const float DecibelMultiplier = 20;
-    
         [SerializeField] private AudioMixerGroup _mixerGroup;
         [SerializeField] private MixerGroups _groupType;
-        [SerializeField] private Toggle _toggle;
-        [SerializeField] private AudioSource _audioSource = null;
     
         private Slider _slider;
     
@@ -38,15 +31,9 @@ namespace Switchers
 
         private void ChangeVolume(float value)
         {
-            string groupName = MixerGroupNames.GetName(_groupType);
-
-            if (_audioSource != null)
-                _audioSource.volume = value;
+            string groupName = _groupType.ToString();
         
-            if (_groupType == MixerGroups.Master && (_toggle == null || _toggle.isOn == false))
-                return;
-        
-            _mixerGroup.audioMixer.SetFloat(groupName, Mathf.Log10(Mathf.Clamp(value, MinValue, MaxValue)) * DecibelMultiplier);
+            _mixerGroup.audioMixer.SetFloat(groupName, Mathf.Log10(Mathf.Clamp(value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) * VolumeValues.DecibelMultiplier);
         }
     }
 }
