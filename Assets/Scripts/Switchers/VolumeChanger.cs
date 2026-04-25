@@ -35,9 +35,9 @@ namespace Switchers
 
         private void ChangeVolume(float value)
         {
-            float volumeValue =
-                Mathf.Log10(Mathf.Clamp(value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) *
-                VolumeValues.DecibelMultiplier;
+            float clampedVolume = Mathf.Clamp(value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue);
+            
+            float volumeValue = Mathf.Log10(clampedVolume) * VolumeValues.DecibelMultiplier;
             
             _mixer.SetFloat(_groupType.ToString(), volumeValue);
         }

@@ -13,11 +13,14 @@ namespace Switchers
         private const string LabelTextOn = "On"; 
         private const string LabelTextOff = "Off";
         
-        [SerializeField] private AudioMixerGroup _masterMixer;
+        [SerializeField] private MixerGroups _groupType;
+        [SerializeField] private AudioMixer _mixer;
         [SerializeField] private Text _label;
         [SerializeField] private Slider _volumeSlider;
         
         private Toggle _toggle;
+        
+        private float _volumeValue;
 
         private void Awake()
         {
@@ -37,7 +40,19 @@ namespace Switchers
         
         private void ApplyVolume(bool isOn)
         {
-            _masterMixer.audioMixer.SetFloat(MixerGroups.MasterVolume.ToString(), isOn ? (Mathf.Log10(Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue, VolumeValues.MaxSliderValue)) * VolumeValues.DecibelMultiplier) : MinVolume);
+            if (isOn)
+            {
+                float clampedVolume = Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue,
+                    VolumeValues.MaxSliderValue);
+                
+                _volumeValue = Mathf.Log10(clampedVolume) * VolumeValues.DecibelMultiplier;
+            }
+            else
+            {
+                _volumeValue = MinVolume;
+            }
+            
+            _mixer.SetFloat(_groupType.ToString(), _volumeValue);
             
             UpdateLabel(isOn);
         }

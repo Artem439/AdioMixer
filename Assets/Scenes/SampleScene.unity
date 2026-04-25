@@ -1107,7 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b875859661134ec38f8e3c9c229d24c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _masterMixer: {fileID: 24300002, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
+  _groupType: 0
+  _mixer: {fileID: 24100000, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
   _label: {fileID: 257293570}
   _volumeSlider: {fileID: 966024099}
 --- !u!114 &668939246
@@ -1405,8 +1406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1746861069}
   _audioClip: {fileID: 8300000, guid: 86dae64b082b3b54a9652f3abacaa33a, type: 3}
-  _groupType: 1
-  _mixer: {fileID: 24100000, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
 --- !u!1 &824646115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,8 +2272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1746861069}
   _audioClip: {fileID: 8300000, guid: 1591a812f19493947bc44b50a3a32aee, type: 3}
-  _groupType: 1
-  _mixer: {fileID: 24100000, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
 --- !u!1 &1105202932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,8 +3036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1746861069}
   _audioClip: {fileID: 8300000, guid: 00bd331b5820ca44b99b8dd1d107d5d9, type: 3}
-  _groupType: 1
-  _mixer: {fileID: 24100000, guid: a2036d6a2e49f4d4795a801843629527, type: 2}
 --- !u!1 &1572148621
 GameObject:
   m_ObjectHideFlags: 0
