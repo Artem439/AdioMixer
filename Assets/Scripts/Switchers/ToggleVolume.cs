@@ -9,6 +9,7 @@ namespace Switchers
     public class ToggleVolume : MonoBehaviour
     {
         private const float MinVolume = -80.0f;
+        private const float NormalVolume = 0.0f;
         
         private const string LabelTextOn = "On"; 
         private const string LabelTextOff = "Off";
@@ -19,8 +20,6 @@ namespace Switchers
         [SerializeField] private Slider _volumeSlider;
         
         private Toggle _toggle;
-        
-        private float _volumeValue;
 
         private void Awake()
         {
@@ -40,19 +39,7 @@ namespace Switchers
         
         private void ApplyVolume(bool isOn)
         {
-            if (isOn)
-            {
-                float clampedVolume = Mathf.Clamp(_volumeSlider.value, VolumeValues.MinSliderValue,
-                    VolumeValues.MaxSliderValue);
-                
-                _volumeValue = Mathf.Log10(clampedVolume) * VolumeValues.DecibelMultiplier;
-            }
-            else
-            {
-                _volumeValue = MinVolume;
-            }
-            
-            _mixer.SetFloat(_groupType.ToString(), _volumeValue);
+            _mixer.SetFloat(_groupType.ToString(), isOn ? NormalVolume : MinVolume);
             
             UpdateLabel(isOn);
         }
